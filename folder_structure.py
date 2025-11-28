@@ -12,27 +12,41 @@ list_of_files = [
     f"src/{project_name}/components/__init__.py",
     f"src/{project_name}/utils/__init__.py",
     f"src/{project_name}/config/__init__.py",
-    f"src/{project_name}/config/__init__.py",
     f"src/{project_name}/config/configuration.py",
     f"src/{project_name}/pipeline/__init__.py",
     f"src/{project_name}/entity/__init__.py",
     f"src/{project_name}/constants/__init__.py",
+
     "config/config.yaml",
     "dvc.yaml",
     "params.yaml",
     "requirements.txt",
     "setup.py",
     ".gitignore",
-    "README.md ",
-    "app/main.py/config.py/database.py",                   
+    "README.md",
+
+    "app/main.py",
+    "app/config.py",
+    "app/database.py",
+
     "research/trials.ipynb",
+
     "templates/index.html",
+
     "static/css/style.css",
     "static/js/script.js",
-    "routers/orders.py/warehouse.py/dispatch.py/tracking.py/auth.py",
-    "models/order_model.py/user_model.py/tracking_model.py"
-    
-] 
+
+    "routers/orders.py",
+    "routers/warehouse.py",
+    "routers/dispatch.py",
+    "routers/tracking.py",
+    "routers/auth.py",
+
+    "models/order_model.py",
+    "models/user_model.py",
+    "models/tracking_model.py"
+]
+
 
 
 
