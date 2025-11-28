@@ -30,7 +30,7 @@ list_of_files = [
     "static/css/style.css",
     "static/js/script.js",
     "routers/orders.py/warehouse.py/dispatch.py/tracking.py/auth.py",
-    "models/order_model.py/user_model.py/tracking_model.py"
+    "models/order_model.py/user_model.py/tracking_model.py"`
     
 ] 
 
