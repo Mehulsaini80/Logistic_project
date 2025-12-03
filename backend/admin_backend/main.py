@@ -42,7 +42,8 @@ class AuthService:
             raise HTTPException(status_code=401, detail="Invalid credentials")
         # role may be stored as an Enum or as a raw value; handle both safely
         role_value = getattr(user.role, 'value', user.role)
-        if role_value != "dispatcher":
+        # Allow both admin and dispatcher roles
+        if role_value not in ["dispatcher", "admin"]:
             raise HTTPException(status_code=403, detail="Dispatcher access only")
         
         # Update the login timestamp in database
@@ -256,8 +257,16 @@ def create_app() -> FastAPI:
         token: str = Depends(oauth2_scheme),
         db: Session = Depends(get_db)
     ):
-        user = get_current_user(token, db)
-        if user.role != UserRole.DISPATCHER:
+        from backend.shared.utils import verify_token
+        payload = verify_token(token)
+        if not payload:
+            raise HTTPException(status_code=401, detail="Invalid token")
+        email = payload.get("sub")
+        user = db.query(User).filter(User.email == email).first()
+        if not user:
+            raise HTTPException(status_code=401, detail="User not found")
+        role_value = getattr(user.role, 'value', user.role)
+        if role_value not in ["dispatcher", "admin"]:
             raise HTTPException(status_code=403, detail="Dispatcher access required")
         return user
 
